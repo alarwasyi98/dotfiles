@@ -1,5 +1,5 @@
 # Ignore plugin directories for Neovim
-nvim/lazy-lock.json
+nvim/.config/nvim/lazy-lock.json
 nvim/.netrwhist
 
 # Ignore compiled Lua files
