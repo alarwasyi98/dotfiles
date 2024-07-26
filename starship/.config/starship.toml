@@ -5,7 +5,7 @@ add_newline = true
 
 # Change the default prompt format
 format = """\
-[╭╴](238)$os\
+[╭╴](238)$os$username\
 $all[╰─](238)$character"""
 
 # Change the default prompt characters
@@ -25,14 +25,14 @@ Macos = '󰀵'
 
 # Shows the username
 [username]
-disabled = true # disable in powershell
+disabled = false # disable in powershell
 format = "[$user]($style) " 
-show_always = false 
+show_always = true 
 style_root = "black bold" 
 style_user = "white bold" 
 
 [directory]
-format = " at [$path]($style)[$read_only]($read_only_style) "
+format = "at [$path]($style)[$read_only]($read_only_style) "
 home_symbol = "  ~"
 read_only = "  "
 read_only_style = "197"
