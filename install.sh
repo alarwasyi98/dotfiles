@@ -3,7 +3,7 @@
 set -e
 
 # Konfigurasi
-DOTFILES_REPO="https://github.com/yourusername/dotfiles.git"
+DOTFILES_REPO="https://github.com/alarwasyi98/dotfiles.git"
 DOTFILES_DIR="$HOME/.dotfiles"
 
 # Fungsi untuk logging
@@ -19,11 +19,11 @@ get_user_input() {
 
 # Instalasi dependensi
 install_dependencies() {
-  log "Menginstal dependensi..."
+  log "Installing Dependencies..."
   if command -v pacman &>/dev/null; then
     sudo pacman -Syu --noconfirm git stow curl
   else
-    log "Tidak dapat mendeteksi package manager. Silakan instal Git, Stow, dan Curl secara manual."
+    log "Can't detect any package manager. install Git, Stow, and Curl manually."
     exit 1
   fi
 }
@@ -31,19 +31,19 @@ install_dependencies() {
 # Clone repositori dotfiles
 clone_dotfiles() {
   if [ -d "$DOTFILES_DIR" ]; then
-    log "Direktori dotfiles sudah ada. Melakukan update..."
+    log "Dotfiles directory exists. Doing update..."
     cd "$DOTFILES_DIR" && git pull
   else
-    log "Mengkloning repositori dotfiles..."
+    log "Clonning dotfiles..."
     git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
   fi
 }
 
 # Konfigurasi Git
 setup_git() {
-  log "Mengkonfigurasi Git..."
-  git_name=$(get_user_input "Masukkan nama untuk konfigurasi Git" "$(git config --global user.name)")
-  git_email=$(get_user_input "Masukkan email untuk konfigurasi Git" "$(git config --global user.email)")
+  log "Configurate Git..."
+  git_name=$(get_user_input "Input your Git Username" "$(git config --global user.name)")
+  git_email=$(get_user_input "Input your Git Email" "$(git config --global user.email)")
 
   git config --global user.name "$git_name"
   git config --global user.email "$git_email"
@@ -51,19 +51,19 @@ setup_git() {
 
 # Setup SSH
 setup_ssh() {
-  log "Mengatur SSH..."
+  log "Manage SSH..."
   if [ ! -f "$HOME/.ssh/id_rsa" ]; then
     ssh-keygen -t rsa -b 4096 -C "$git_email" -f "$HOME/.ssh/id_rsa" -N ""
   fi
   eval "$(ssh-agent -s)"
   ssh-add "$HOME/.ssh/id_rsa"
-  log "Kunci publik SSH Anda:"
+  log "Your Public SSH:"
   cat "$HOME/.ssh/id_rsa.pub"
 }
 
 # Instalasi dotfiles menggunakan Stow
 install_dotfiles() {
-  log "Menginstal dotfiles..."
+  log "Installing Dotfiles..."
   cd "$DOTFILES_DIR"
   for dir in */; do
     stow -v -R -t "$HOME" "${dir%/}"
@@ -73,21 +73,21 @@ install_dotfiles() {
 # Konfigurasi Neovim (opsional, sesuaikan dengan kebutuhan)
 setup_neovim() {
   if command -v nvim &>/dev/null; then
-    log "Mengkonfigurasi Neovim..."
+    log "Configurate Neovim..."
     nvim --headless "+Lazy! sync" +qa
   fi
 }
 
 # Fungsi utama
 main() {
-  log "Memulai instalasi dotfiles..."
+  log "Initialize dotfiles..."
   install_dependencies
   clone_dotfiles
   setup_git
   setup_ssh
   install_dotfiles
   setup_neovim
-  log "Instalasi dotfiles selesai!"
+  log "Dotfiles Installation Succesfully!!"
 }
 
 # Jalankan fungsi utama
