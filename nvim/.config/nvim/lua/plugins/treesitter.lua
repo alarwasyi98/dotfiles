@@ -22,8 +22,6 @@ return {
 				"svelte",
 				"markdown",
 				"markdown_inline",
-				"latex",
-				"latex2text",
 			},
 
 			-- matchup = {
