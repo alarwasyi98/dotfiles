@@ -37,6 +37,9 @@ This repository aims to provide a seamless setup for my development environment,
 
 ## Installation
 
+> [!CAUTION]
+> Always review and understand the script's code before running any executable scripts to prevent any undesired modifications to your system. 
+
 To get started with these dotfiles, you'll need to have Arch Linux set up on WSL and install GNU Stow. Follow these steps to set up the environment:
 
 1. **Clone the Repository:**
