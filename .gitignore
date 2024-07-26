@@ -1,0 +1,75 @@
+# Ignore plugin directories for Neovim
+nvim/lazy-lock.json
+nvim/.netrwhist
+
+# Ignore compiled Lua files
+*.luac
+
+# Ignore Neovim's undo and swap files
+nvim/undo/
+nvim/swap/
+
+# Ignore package manager directories
+nvim/pack/
+
+# Ignore log files
+*.log
+
+# Ignore cache directories
+.cache/
+*cache/
+
+# Ignore temporary files
+*.tmp
+*.temp
+*~
+
+# Ignore Bash history
+.bash_history
+
+# Ignore local configuration files that might contain sensitive information
+.localrc
+.env
+
+# Ignore compiled Python files
+*.pyc
+__pycache__/
+
+# Ignore Node.js modules
+node_modules/
+
+# Ignore macOS specific files
+.DS_Store
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore Vim's view files
+*.vim/view/
+
+# Ignore any backup files
+*.bak
+
+# Ignore Neovim's shada file (shared data)
+nvim/shada/
+
+# Ignore Neovim's view files (for saving folds, etc.)
+nvim/view/
+
+# Ignore any file with .local extension (for local configurations)
+*.local
+
+# Ignore Arch Linux package manager cache
+.pkg-cache/
+
+# Ignore Yarn's error log
+yarn-error.log
+
+# Ignore npm's debug log
+npm-debug.log
+
+# Ignore Neovim's generated help tags
+nvim/doc/tags
+
+# Ignore any file ending with _ignore
+*_ignore
