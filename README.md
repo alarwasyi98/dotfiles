@@ -124,6 +124,30 @@ dotfiles/
 
 Here is a list of software configurations included in this repository:
 
+### Terminal Customization
+
+| No | Software | Description                           | Command        |
+|----|----------|---------------------------------------|----------------|
+| 1  | Bash     | Customized Bash shell settings        | `stow bash`    |
+| 2  | Starship | Cross-shell prompt with Starship      | `stow starship`|
+| 3  | Neofetch | Display system information in terminal| `stow neofetch`|
+
+### Development Tools
+
+| No | Software | Description                      | Command       |
+|----|----------|----------------------------------|---------------|
+| 1  | Neovim   | Modern Vim-based text editor     | `stow neovim` |
+| 2  | Git      | Version control system           | `stow git`    |
+| 3  | Bat      | Cat clone with syntax highlighting| `stow bat`   |
+
+### Utilities
+
+| No | Software  | Description                           | Command       |
+|----|-----------|---------------------------------------|---------------|
+| 1  | Yazi      | A blazing fast terminal file manager  | `stow yazi`   |
+| 2  | GNU Stow  | Symlink farm manager for dotfiles     | Managed manually |
+
+
 ## Contributing
 
 Contributions are welcome! If you have any improvements or suggestions, feel free to submit a pull request or open an issue. Please ensure that your contributions align with the repository's goals of providing a cross-platform and efficient development environment.
