@@ -20,8 +20,10 @@ return {
 				"scss",
 				"sql",
 				"svelte",
-        "markdown",
-        "markdown_inline"
+				"markdown",
+				"markdown_inline",
+				"latex",
+				"latex2text",
 			},
 
 			-- matchup = {
