@@ -532,6 +532,8 @@ mysqlconfig() {
   fi
 }
 
+export BAT_THEME=Catppuccin-mocha
+
 # fnm
 FNM_PATH="/home/alarwasyi98/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
@@ -545,4 +547,3 @@ eval "$(starship init bash)"
 
 # zoxide
 eval "$(zoxide init bash)"
-
