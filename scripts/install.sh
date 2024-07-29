@@ -66,7 +66,9 @@ install_dotfiles() {
   log "Installing Dotfiles..."
   cd "$DOTFILES_DIR"
   for dir in */; do
-    stow -v -R -t "$HOME" "${dir%/}"
+    if [[ "${dir%/}" != "scripts" ]]; then
+      stow -v -R -t "$HOME" "${dir%/}"
+    fi
   done
 }
 
