@@ -116,7 +116,8 @@ alias edit='vim'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Edit this .bashrc file
-alias ebrc='edit $HOME/.bashrc'
+alias ebrc='edit ~/.bashrc'
+alias reload-bash='source ~/.bashrc'
 
 # Edit starship.toml
 alias staredit='edit $HOME/.config/starship.toml'
@@ -158,20 +159,20 @@ alias bd='cd "$OLDPWD"'
 alias rmd='/bin/rm  --recursive --force --verbose '
 
 # Alias's for multiple directory listing commands
-alias la='ls -Alh'                # show hidden files
-alias ls='ls -aFh --color=always' # add colors and file type extensions
-alias lx='ls -lXBh'               # sort by extension
-alias lk='ls -lSrh'               # sort by size
-alias lc='ls -lcrh'               # sort by change time
-alias lu='ls -lurh'               # sort by access time
-alias lr='ls -lRh'                # recursive ls
-alias lt='ls -ltrh'               # sort by date
-alias lm='ls -alh |more'          # pipe through 'more'
-alias lw='ls -xAh'                # wide listing format
-alias ll='ls -Fls'                # long listing format
-alias labc='ls -lap'              #alphabetical sort
-alias lf="ls -l | egrep -v '^d'"  # files only
-alias ldir="ls -l | egrep '^d'"   # directories only
+# alias la='eza -Alh --color=always --icons=always --no-user --no-permissions' # show hidden files
+alias ls='eza -xAah --git --color=always --icons=always --no-user --no-permissions --no-filesize --no-time' # add colors and file type extensions
+# alias lx='eza -lXBh'                                                         # sort by extension
+# alias lk='eza -lSrh'                                                         # sort by size
+# alias lc='eza -lcrh'                                                         # sort by change time
+# alias lu='eza -lurh'                                                         # sort by access time
+# alias lr='eza -lRh'                                                          # recursive ls
+# alias lt='eza -ltrh'                                                         # sort by date
+# alias lm='eza -alh |more'                                                    # pipe through 'more'
+alias lw='eza -xAh --icons=always'                       # wide listing format
+alias ll='eza -l -a --icons=always --color=always --git' # long listing format
+alias labc='ls -lap'                                     #alphabetical sort
+alias lf="ls -l | egrep -v '^d'"                         # files only
+alias ldir="ls -l | egrep '^d'"                          # directories only
 
 # alias chmod commands
 alias mx='chmod a+x'
@@ -208,7 +209,8 @@ alias rebootforce='sudo shutdown -r -n now'
 alias diskspace="du -S | sort -n -r |more"
 alias folders='du -h --max-depth=1'
 alias folderssort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
-alias tree='tree -CAhF --dirsfirst'
+# alias tree='tree -CAhF --dirsfirst'
+alias tree='eza --tree --icons=always --color=always'
 alias treed='tree -CAFd'
 alias mountedinfo='df -hT'
 
