@@ -534,7 +534,7 @@ mysqlconfig() {
   fi
 }
 
-export BAT_THEME=Catppuccin-mocha
+export BAT_THEME="Catppuccin Mocha"
 
 # fnm
 FNM_PATH="/home/alarwasyi98/.local/share/fnm"
