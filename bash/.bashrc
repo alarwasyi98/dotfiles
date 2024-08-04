@@ -6,6 +6,13 @@ case $- in
 *) return ;;
 esac
 
+# Enable bash programmable completion features in interactive shells
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+	. /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+	. /etc/bash_completion
+fi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -161,6 +168,8 @@ alias rmd='/bin/rm  --recursive --force --verbose '
 # Alias's for multiple directory listing commands
 # alias la='eza -Alh --color=always --icons=always --no-user --no-permissions' # show hidden files
 alias ls='eza -xAah --git --color=always --icons=always --no-user --no-permissions --no-filesize --no-time' # add colors and file type extensions
+alias lw='eza -xAh --icons=always'                       # wide listing format
+alias ll='eza -l -a --icons=always --color=always --git' # long listing format
 # alias lx='eza -lXBh'                                                         # sort by extension
 # alias lk='eza -lSrh'                                                         # sort by size
 # alias lc='eza -lcrh'                                                         # sort by change time
@@ -168,11 +177,9 @@ alias ls='eza -xAah --git --color=always --icons=always --no-user --no-permissio
 # alias lr='eza -lRh'                                                          # recursive ls
 # alias lt='eza -ltrh'                                                         # sort by date
 # alias lm='eza -alh |more'                                                    # pipe through 'more'
-alias lw='eza -xAh --icons=always'                       # wide listing format
-alias ll='eza -l -a --icons=always --color=always --git' # long listing format
-alias labc='ls -lap'                                     #alphabetical sort
-alias lf="ls -l | egrep -v '^d'"                         # files only
-alias ldir="ls -l | egrep '^d'"                          # directories only
+# alias labc='ls -lap'                                     #alphabetical sort
+# alias lf="ls -l | egrep -v '^d'"                         # files only
+# alias ldir="ls -l | egrep '^d'"                          # directories only
 
 # alias chmod commands
 alias mx='chmod a+x'
@@ -227,12 +234,6 @@ alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' 
 
 # SHA1
 alias sha1='openssl sha1'
-
-alias clickpaste='sleep 3; xdotool type "$(xclip -o -selection clipboard)"'
-
-# KITTY - alias to be able to use kitty features when connecting to remote servers(e.g use tmux on remote server)
-
-alias kssh="kitty +kitten ssh"
 
 #######################################################
 # SPECIAL FUNCTIONS
@@ -427,24 +428,20 @@ install_bashrc_support() {
 
   case $dtype in
   "redhat")
-    sudo yum install multitail tree zoxide trash-cli fzf bash-completion fastfetch
+    sudo yum install multitail eza zoxide trash-cli fzf bash-completion neofetch
     ;;
   "suse")
-    sudo zypper install multitail tree zoxide trash-cli fzf bash-completion fastfetch
+    sudo zypper install multitail eza zoxide trash-cli fzf bash-completion neofetch
     ;;
   "debian")
-    sudo apt-get install multitail tree zoxide trash-cli fzf bash-completion
-    # Fetch the latest fastfetch release URL for linux-amd64 deb file
-    FASTFETCH_URL=$(curl -s https://api.github.com/repos/fastfetch-cli/fastfetch/releases/latest | grep "browser_download_url.*linux-amd64.deb" | cut -d '"' -f 4)
-
-    # Download the latest fastfetch deb file
-    curl -sL $FASTFETCH_URL -o /tmp/fastfetch_latest_amd64.deb
-
-    # Install the downloaded deb file using apt-get
-    sudo apt-get install /tmp/fastfetch_latest_amd64.deb
+    sudo apt-get install multitail eza zoxide trash-cli fzf bash-completion neofetch
+    # install starship prompt
+    curl -sS https://starship.rs/install.sh | sh
     ;;
   "arch")
-    sudo paru multitail tree zoxide trash-cli fzf bash-completion neofetch
+    sudo paru multitail eza zoxide trash-cli fzf bash-completion neofetch
+    # install starship prompt
+    curl -sS https://starship.rs/install.sh | sh
     ;;
   "slackware")
     echo "No install support for Slackware"
