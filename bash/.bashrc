@@ -8,9 +8,9 @@ esac
 
 # Enable bash programmable completion features in interactive shells
 if [ -f /usr/share/bash-completion/bash_completion ]; then
-	. /usr/share/bash-completion/bash_completion
+  . /usr/share/bash-completion/bash_completion
 elif [ -f /etc/bash_completion ]; then
-	. /etc/bash_completion
+  . /etc/bash_completion
 fi
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -168,8 +168,8 @@ alias rmd='/bin/rm  --recursive --force --verbose '
 # Alias's for multiple directory listing commands
 # alias la='eza -Alh --color=always --icons=always --no-user --no-permissions' # show hidden files
 alias ls='eza -xAah --git --color=always --icons=always --no-user --no-permissions --no-filesize --no-time' # add colors and file type extensions
-alias lw='eza -xAh --icons=always'                       # wide listing format
-alias ll='eza -l -a --icons=always --color=always --git' # long listing format
+alias lw='eza -xAh --icons=always'                                                                          # wide listing format
+alias ll='eza -l -a --icons=always --color=always --git'                                                    # long listing format
 # alias lx='eza -lXBh'                                                         # sort by extension
 # alias lk='eza -lSrh'                                                         # sort by size
 # alias lc='eza -lcrh'                                                         # sort by change time
@@ -234,6 +234,10 @@ alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' 
 
 # SHA1
 alias sha1='openssl sha1'
+
+# copy paste
+alias pbcopy="xsel --input --clipboard"
+alias pbpaste="xsel --output --clipboard"
 
 #######################################################
 # SPECIAL FUNCTIONS
@@ -428,18 +432,18 @@ install_bashrc_support() {
 
   case $dtype in
   "redhat")
-    sudo yum install multitail eza zoxide trash-cli fzf bash-completion neofetch
+    sudo yum install eza zoxide trash-cli fzf bash-completion neofetch
     ;;
   "suse")
-    sudo zypper install multitail eza zoxide trash-cli fzf bash-completion neofetch
+    sudo zypper install eza zoxide trash-cli fzf bash-completion neofetch
     ;;
   "debian")
-    sudo apt-get install multitail eza zoxide trash-cli fzf bash-completion neofetch
+    sudo apt-get install eza zoxide trash-cli fzf bash-completion neofetch
     # install starship prompt
     curl -sS https://starship.rs/install.sh | sh
     ;;
   "arch")
-    sudo paru multitail eza zoxide trash-cli fzf bash-completion neofetch
+    sudo paru eza zoxide trash-cli fzf bash-completion neofetch
     # install starship prompt
     curl -sS https://starship.rs/install.sh | sh
     ;;
@@ -531,8 +535,6 @@ mysqlconfig() {
   fi
 }
 
-export BAT_THEME="Catppuccin Mocha"
-
 # fnm
 FNM_PATH="/home/alarwasyi98/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
@@ -540,9 +542,11 @@ if [ -d "$FNM_PATH" ]; then
   eval "$(fnm env)"
 fi
 
+export BAT_THEME="Catppuccin Mocha"
+
 # starship
-# Ensure starship installed: Install Starship - curl -sS https://starship.rs/install.sh | sh
 eval "$(starship init bash)"
 
 # zoxide
 eval "$(zoxide init bash)"
+alias cd="z"
