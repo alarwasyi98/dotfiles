@@ -535,18 +535,8 @@ mysqlconfig() {
   fi
 }
 
-# fnm
-FNM_PATH="/home/alarwasyi98/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env)"
-fi
-
-export BAT_THEME="Catppuccin Mocha"
-
 # starship
 eval "$(starship init bash)"
 
 # zoxide
 eval "$(zoxide init bash)"
-alias cd="z"
