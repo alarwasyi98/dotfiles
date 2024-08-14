@@ -1,5 +1,15 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) for examples
 
+# Load Bash aliases
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
+
+# Load Bash functions
+if [ -f ~/.bash_functions ]; then
+  . ~/.bash_functions
+fi
+
 # If not running interactively, don't do anything
 case $- in
 *i*) ;;
@@ -124,7 +134,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Edit this .bashrc file
 alias ebrc='edit ~/.bashrc'
-alias reload-bash='source ~/.bashrc'
+alias reloadbash="source ~/.bashrc && echo 'Bash reloaded successfully!'"
 
 # Edit starship.toml
 alias staredit='edit $HOME/.config/starship.toml'
@@ -228,6 +238,11 @@ alias mkgz='tar -cvzf'
 alias untar='tar -xvf'
 alias unbz2='tar -xvjf'
 alias ungz='tar -xvzf'
+
+alias gla='git log --oneline --graph --all'
+alias cdf='cd $(fd -t d | fzf)'                                                                                         # fd-find and fzf needs to be preinstalled
+alias fvim='nvim $(fzf --preview="bat --color=always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down)' # nvim, bat and fzf needs to be preinstalled
+alias ff='fzf --preview=less --bind shift-up:preview-page-up,shift-down:preview-page-down)'                             # fzf and less needs to be preinstalled
 
 # Show all logs in /var/log
 alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
