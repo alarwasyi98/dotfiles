@@ -7,3 +7,10 @@
 	helper = store
 [safe]
 	directory = /storage/emulated/0/Obsidian
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	unstage = reset HEAD --
+	last = log -1 HEAD
