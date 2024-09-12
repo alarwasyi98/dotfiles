@@ -1,10 +1,15 @@
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) for examples
-# If not running interactively, don't do anything
-case $- in
-*i*) ;;
-*) return ;;
-esac
+#        .__
+# _____  |  |     BOURNE AGAIN SHELL SETUP
+# \__  \ |  |     Abdul Hakim (alarwasyi98)
+#  / __ \|  |__   https://github.com/alarwasyi98
+# (____  /____/
+#      \/
+#                 last modified: 2024-09-12
 
+### OTHER SCRIPT ##
+# Load other bash scripts if necessary
+# [ -f ~/.bash_aliases ] && . ~/.bash_aliases
+# [ -f ~/.bash_functions ] && . ~/.bash_functions
 # Enable bash programmable completion features in interactive shells
 if [ -f /usr/share/bash-completion/bash_completion ]; then
   . /usr/share/bash-completion/bash_completion
@@ -12,98 +17,38 @@ elif [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
 
+### EXPORT ###
+export EDITOR=nvim
+export VISUAL=nvim
+export TERM="xterm-256color" # getting proper colors
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+### HISTORY CONTROL ###
 # don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
 HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+### SHOPT ###
+shopt -s autocd  # change to named directory
+shopt -s cdspell # autocorrects cd misspellings
+shopt -s cmdhist # save multi-line commands in history as single line
+shopt -s dotglob
+shopt -s histappend     # do not overwrite history
+shopt -s expand_aliases # expand aliases
+shopt -s checkwinsize   # checks term size when bash regains control
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-  debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-xterm-color | *-256color) color_prompt=yes ;;
+### HAVE NO IDEA ABOUT THESE ###
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) for examples
+# If not running interactively, don't do anything
+case $- in
+*i*) ;;
+*) return ;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-
-# Enable color prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    # We have color support; assume it's compliant with Ecma-48
-    color_prompt=yes
-  else
-    color_prompt=
-  fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm* | rxvt*)
-  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-  ;;
-*) ;;
-esac
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-  alias ls='ls --color=auto'
-  #alias dir='dir --color=auto'
-  #alias vdir='vdir --color=auto'
-
-  alias grep='grep --color=auto'
-  alias fgrep='fgrep --color=auto'
-  alias egrep='egrep --color=auto'
-fi
-
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# Replace batcat with cat on Fedora as batcat is not available as a RPM in any form
-if command -v lsb_release >/dev/null; then
-  DISTRIBUTION=$(lsb_release -si)
-
-  if [ "$DISTRIBUTION" = "Fedora" ] || [ "$DISTRIBUTION" = "Arch" ]; then
-    alias cat='bat'
-  else
-    alias cat='batcat'
-  fi
-fi
-
-# Set the default editor
-export EDITOR=nvim
-export VISUAL=nvim
+### DEFAULT EDITOR ###
 alias pico='edit'
 alias spico='sedit'
 alias nano='edit'
@@ -111,13 +56,13 @@ alias snano='sedit'
 alias vim='nvim'
 alias edit='vim'
 
-#######################################################
-# GENERAL ALIAS'S
-#######################################################
-# To temporarily bypass an alias, we precede the command with a \
-# EG: the ls command is aliased, but to use the normal ls command you would type \ls
+### ALIASES ###
+# color support for grep
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
-# Add an "alert" alias for long running commands.  Use like so:
+# To temporarily bypass an alias, we precede the command with a \
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
@@ -169,16 +114,6 @@ alias rmd='/bin/rm  --recursive --force --verbose '
 alias ls='eza -xAah --git --color=always --icons=always --no-user --no-permissions --no-filesize --no-time' # add colors and file type extensions
 alias lw='eza -xAh --icons=always'                                                                          # wide listing format
 alias ll='eza -l -a --icons=always --color=always --git'                                                    # long listing format
-# alias lx='eza -lXBh'                                                         # sort by extension
-# alias lk='eza -lSrh'                                                         # sort by size
-# alias lc='eza -lcrh'                                                         # sort by change time
-# alias lu='eza -lurh'                                                         # sort by access time
-# alias lr='eza -lRh'                                                          # recursive ls
-# alias lt='eza -ltrh'                                                         # sort by date
-# alias lm='eza -alh |more'                                                    # pipe through 'more'
-# alias labc='ls -lap'                                     #alphabetical sort
-# alias lf="ls -l | egrep -v '^d'"                         # files only
-# alias ldir="ls -l | egrep '^d'"                          # directories only
 
 # alias chmod commands
 alias mx='chmod a+x'
@@ -215,12 +150,16 @@ alias rebootforce='sudo shutdown -r -n now'
 alias diskspace="du -S | sort -n -r |more"
 alias folders='du -h --max-depth=1'
 alias folderssort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
+
 # alias tree='tree -CAhF --dirsfirst'
 alias tree='eza --tree --icons=always --color=always'
 alias treed='tree -CAFd'
 alias mountedinfo='df -hT'
 
-# Alias's for archives
+# git
+alias gla='git log --oneline --graph --all'
+
+# tar
 alias mktar='tar -cvf'
 alias mkbz2='tar -cvjf'
 alias mkgz='tar -cvzf'
@@ -228,7 +167,7 @@ alias untar='tar -xvf'
 alias unbz2='tar -xvjf'
 alias ungz='tar -xvzf'
 
-alias gla='git log --oneline --graph --all'
+# fzf
 alias cdf='cd $(fd -t d | fzf)'                                                                                         # fd-find and fzf needs to be preinstalled
 alias fvim='nvim $(fzf --preview="bat --color=always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down)' # nvim, bat and fzf needs to be preinstalled
 alias ff='fzf --preview=less --bind shift-up:preview-page-up,shift-down:preview-page-down)'                             # fzf and less needs to be preinstalled
@@ -447,9 +386,7 @@ install_bashrc_support() {
     curl -sS https://starship.rs/install.sh | sh
     ;;
   "arch")
-    sudo paru eza zoxide trash-cli fzf bash-completion neofetch
-    # install starship prompt
-    curl -sS https://starship.rs/install.sh | sh
+    yay -S eza zoxide trash-cli fzf bash-completion neofetch starship
     ;;
   "slackware")
     echo "No install support for Slackware"
@@ -477,74 +414,8 @@ function whatsmyip() {
   curl -s ifconfig.me
 }
 
-# View Apache logs
-apachelog() {
-  if [ -f /etc/httpd/conf/httpd.conf ]; then
-    cd /var/log/httpd && ls -xAh && multitail --no-repeat -c -s 2 /var/log/httpd/*_log
-  else
-    cd /var/log/apache2 && ls -xAh && multitail --no-repeat -c -s 2 /var/log/apache2/*.log
-  fi
-}
-
-# Edit the Apache configuration
-apacheconfig() {
-  if [ -f /etc/httpd/conf/httpd.conf ]; then
-    sedit /etc/httpd/conf/httpd.conf
-  elif [ -f /etc/apache2/apache2.conf ]; then
-    sedit /etc/apache2/apache2.conf
-  else
-    echo "Error: Apache config file could not be found."
-    echo "Searching for possible locations:"
-    sudo updatedb && locate httpd.conf && locate apache2.conf
-  fi
-}
-
-# Edit the PHP configuration file
-phpconfig() {
-  if [ -f /etc/php.ini ]; then
-    sedit /etc/php.ini
-  elif [ -f /etc/php/php.ini ]; then
-    sedit /etc/php/php.ini
-  elif [ -f /etc/php5/php.ini ]; then
-    sedit /etc/php5/php.ini
-  elif [ -f /usr/bin/php5/bin/php.ini ]; then
-    sedit /usr/bin/php5/bin/php.ini
-  elif [ -f /etc/php5/apache2/php.ini ]; then
-    sedit /etc/php5/apache2/php.ini
-  else
-    echo "Error: php.ini file could not be found."
-    echo "Searching for possible locations:"
-    sudo updatedb && locate php.ini
-  fi
-}
-
-# Edit the MySQL configuration file
-mysqlconfig() {
-  if [ -f /etc/my.cnf ]; then
-    sedit /etc/my.cnf
-  elif [ -f /etc/mysql/my.cnf ]; then
-    sedit /etc/mysql/my.cnf
-  elif [ -f /usr/local/etc/my.cnf ]; then
-    sedit /usr/local/etc/my.cnf
-  elif [ -f /usr/bin/mysql/my.cnf ]; then
-    sedit /usr/bin/mysql/my.cnf
-  elif [ -f ~/my.cnf ]; then
-    sedit ~/my.cnf
-  elif [ -f ~/.my.cnf ]; then
-    sedit ~/.my.cnf
-  else
-    echo "Error: my.cnf file could not be found."
-    echo "Searching for possible locations:"
-    sudo updatedb && locate my.cnf
-  fi
-}
-
 # starship
 eval "$(starship init bash)"
 
 # zoxide
 eval "$(zoxide init bash)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
