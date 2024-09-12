@@ -158,6 +158,25 @@ alias mountedinfo='df -hT'
 
 # git
 alias gla='git log --oneline --graph --all'
+alias addup='git add -u'
+alias addall='git add .'
+alias branch='git branch'
+alias checkout='git checkout'
+alias clone='git clone'
+alias commit='git commit -m'
+alias fetch='git fetch'
+alias pull='git pull origin'
+alias push='git push origin'
+alias tag='git tag'
+alias newtag='git tag -a'
+
+# pacman and yay
+alias pacsyu='sudo pacman -Syu'                # update only standard pkgs
+alias pacsyyu='sudo pacman -Syyu'              # Refresh pkglist & update standard pkgs
+alias parsua='paru -Sua --noconfirm'           # update only AUR pkgs (paru)
+alias parsyu='paru -Syu --noconfirm'           # update standard pkgs and AUR pkgs (paru)
+alias unlock='sudo rm /var/lib/pacman/db.lck'  # remove pacman lock
+alias orphan='sudo pacman -Rns (pacman -Qtdq)' # remove orphaned packages (DANGEROUS!)
 
 # tar
 alias mktar='tar -cvf'
@@ -177,6 +196,11 @@ alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' 
 
 # SHA1
 alias sha1='openssl sha1'
+
+# change your default USER shell
+alias tobash="sudo chsh $USER -s /bin/bash && echo 'Log out and log back in for change to take effect.'"
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Log out and log back in for change to take effect.'"
+alias tofish="sudo chsh $USER -s /bin/fish && echo 'Log out and log back in for change to take effect.'"
 
 # copy paste
 alias pbcopy="xsel --input --clipboard"
@@ -386,7 +410,7 @@ install_bashrc_support() {
     curl -sS https://starship.rs/install.sh | sh
     ;;
   "arch")
-    yay -S eza zoxide trash-cli fzf bash-completion neofetch starship
+    yay -S eza zoxide trash-cli fzf bash-completion neofetch starship colorscript-git
     ;;
   "slackware")
     echo "No install support for Slackware"
@@ -414,8 +438,11 @@ function whatsmyip() {
   curl -s ifconfig.me
 }
 
-# starship
+### SHOW COLORSCRIPT ON STARTUP ###
+colorscript --exec blocks1
+
+### SETUP STARSHIP PROMPT ###
 eval "$(starship init bash)"
 
-# zoxide
+### SETUP ZOXIDE ###
 eval "$(zoxide init bash)"
