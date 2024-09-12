@@ -9,6 +9,9 @@
 set fish_greeting # Supresses fish's intro message
 set TERM xterm-256color # Sets the terminal type
 
+###  SOURCES ###
+# source ~/.config/fish/auto-Hypr.fish # WARNING! FAIL TO LAUNCH HYPR
+
 ### I DONT KNOW WHAT IT IS ##
 function fish_prompt -d "Write out the prompt"
     # This shows up as USER@HOST /home/user/ >, with the directory colored
@@ -33,6 +36,11 @@ end
 ### ALIASES ###
 alias cls='clear'
 alias efish=' nvim ~/.config/fish/config.fish'
+alias reload='source ~/.config/fish/config.fish'
+
+# xsel
+alias pbcopy "xsel --clipboard --input"
+alias pbpaste "xsel --clipboard --output"
 
 # navigation
 alias ..='cd ..'
@@ -90,6 +98,25 @@ alias gla='git log --oneline --graph --all'
 alias cdf='cd $(fd -t d | fzf)' # fd-find and fzf needs to be preinstalled
 alias fvim='nvim $(fzf --preview="bat --color=always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down)' # nvim, bat and fzf needs to be preinstalled
 # alias ff='fzf --preview=less --bind shift-up:preview-page-up,shift-down:preview-page-down)'
+
+# change your default USER shell
+alias tobash="sudo chsh $USER -s /bin/bash && echo 'Log out and log back in for change to take effect.'"
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Log out and log back in for change to take effect.'"
+alias tofish="sudo chsh $USER -s /bin/fish && echo 'Log out and log back in for change to take effect.'"
+
+### FUNCTIONS ###
+
+# IP Address Lookup
+function whatsmyip
+    # Get internal IP (local network IP)
+    set internal_ip (ip addr show | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | cut -d/ -f1)
+
+    # Get external IP (public IP) by querying an external service
+    set external_ip (curl -s https://ifconfig.me)
+
+    echo "Internal IP: $internal_ip"
+    echo "External IP: $external_ip"
+end
 
 ### SHOW COLORSCRIPT ON STARTUP ###
 colorscript --exec alpha
