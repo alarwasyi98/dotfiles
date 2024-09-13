@@ -35,8 +35,11 @@ end
 
 ### ALIASES ###
 alias cls='clear'
+
+# fish
 alias efish=' nvim ~/.config/fish/config.fish'
 alias reload='source ~/.config/fish/config.fish'
+alias showconf='bat --theme=Dracula ~/.config/fish/config.fish'
 
 # xsel
 alias pbcopy "xsel --clipboard --input"
