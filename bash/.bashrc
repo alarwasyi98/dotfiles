@@ -20,6 +20,7 @@ fi
 ### EXPORT ###
 export EDITOR=nvim
 export VISUAL=nvim
+export BAT_THEME=Dracula
 export TERM="xterm-256color" # getting proper colors
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
@@ -69,6 +70,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # Edit this .bashrc file
 alias ebrc='edit ~/.bashrc'
 alias reloadbash="source ~/.bashrc && echo 'Bash reloaded successfully!'"
+alias showconf='bat ~/.bashrc'
 
 # Edit starship.toml
 alias staredit='edit $HOME/.config/starship.toml'
