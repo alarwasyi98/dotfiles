@@ -17,14 +17,21 @@ elif [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
 
+### SETUP XDG DIR ###
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+
 ### EXPORT ###
 export EDITOR=nvim
 export VISUAL=nvim
 export BAT_THEME=Dracula
 export TERM="xterm-256color" # getting proper colors
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+# Comented for performance issues
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 ### HISTORY CONTROL ###
 # don't put duplicate lines or lines starting with space in the history.
@@ -48,6 +55,15 @@ case $- in
 *i*) ;;
 *) return ;;
 esac
+
+# Color for manpages in less
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
 
 ### DEFAULT EDITOR ###
 alias pico='edit'
@@ -438,6 +454,18 @@ function whatsmyip() {
   # External IP Lookup
   echo -n "External IP: "
   curl -s ifconfig.me
+}
+
+# git advance
+gcom() {
+  git add .
+  git commit -m "$1"
+}
+
+lazyg() {
+  git add .
+  git commit -m "$1"
+  git push
 }
 
 ### SHOW COLORSCRIPT ON STARTUP ###
