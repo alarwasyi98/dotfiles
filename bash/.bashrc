@@ -469,7 +469,7 @@ lazyg() {
 }
 
 ### SHOW COLORSCRIPT ON STARTUP ###
-colorscript --exec blocks1
+colorscript --exec crunchbang-mini
 
 ### SETUP STARSHIP PROMPT ###
 eval "$(starship init bash)"
