@@ -4,13 +4,27 @@
 [init]
 	defaultBranch = main
 [credential]
-	helper = store
+  helper = store 
+[merge]
+	renamelimit = 99999
+[pull]
+	rebase = false
+[fetch]
+  parallel = 0
+[color]
+  ui = auto
 [safe]
 	directory = /storage/emulated/0/Obsidian
 [alias]
-	co = checkout
-	br = branch
+  br = branch
+	chp = cherry-pick --no-commit
 	ci = commit
+	co = checkout
+	ls = log -n20 --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)by %an%Creset %C(green)%cr%Creset' --abbrev-commit
+	mrg = merge --no-commit --no-ff
+	pl = pull --recurse-submodules
+	ps = push
+	smu = submodule update --init
 	st = status
 	unstage = reset HEAD --
 	last = log -1 HEAD
