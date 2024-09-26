@@ -22,6 +22,7 @@ Windows = ''
 Arch = '󰣇'
 Ubuntu = ''
 Macos = '󰀵'
+EndeavourOS = ' '
 
 # Shows the username
 [username]
