@@ -15,6 +15,9 @@ foot
 fzf
 git
 intel-ucode
+jdk-openjdk 
+python
+pip
 jq
 kitty
 languagetool
@@ -37,9 +40,11 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 ripgrep
-shell-color-scripts-git
+{yay -S shell-color-scripts-git}
 stow
 timeshift
+tldr
+tmux
 trash-cli
 ttf-anonymous-pro
 ttf-dejavu
