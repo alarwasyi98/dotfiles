@@ -2,14 +2,23 @@
 
 ![Distro Badge](https://img.shields.io/badge/Dotfiles-Arch_BTW-blue?style=for-the-badge)
 
-Welcome to my Arch Linux WSL Dotfiles repository! This repository contains the configuration files and scripts that I use to customize my Arch Linux environment on Windows Subsystem for Linux (WSL). With the power of [GNU Stow](https://www.gnu.org/software/stow/), these dotfiles are designed to be cross-platform and easily manageable.
+Welcome to my Arch Linux WSL Dotfiles repository! This repository contains the configuration
+files and scripts that I use to customize my Arch Linux environment
+on Windows Subsystem for Linux (WSL). With the power of [GNU Stow](https://www.gnu.org/software/stow/),
+these dotfiles are designed to be cross-platform and easily manageable.
 
-> *What?! Arch on Windows?*
+> _What?! Arch on Windows?_
 > Hell yeah!, you can find the Documentation [**Here!**](https://github.com/yuk7/ArchWSL)
 
-This dotfiles repository is currently aimed for [**Arch on WSL**](https://ubuntu.com/wsl), and [**Ubuntu on WSL**](https://ubuntu.com/desktop), tested against versions **20.04** and **22.04**. See how to get started with WSL [here](https://docs.microsoft.com/pt-br/windows/wsl/install-win10).
+This dotfiles repository is currently aimed for [**Arch on WSL**](https://ubuntu.com/wsl),
+and [**Ubuntu on WSL**](https://ubuntu.com/desktop),
+See how to get started with WSL [here](https://docs.microsoft.com/pt-br/windows/wsl/install-win10).
 
-It's also suitable for use in [**GitHub Codespaces**](https://docs.github.com/codespaces/customizing-your-codespace/personalizing-codespaces-for-your-account#dotfiles), [**Gitpod**](https://www.gitpod.io/docs/config-dotfiles), [**VS Code Remote - Containers**](https://code.visualstudio.com/docs/remote/containers#_personalizing-with-dotfile-repositories), or even Linux distributions that are not Arch or Ubuntu, through the [**minimum mode**](#configuration).
+It's also suitable for use in
+[**GitHub Codespaces**](https://docs.github.com/codespaces/customizing-your-codespace/personalizing-codespaces-for-your-account#dotfiles),
+[**Gitpod**](https://www.gitpod.io/docs/config-dotfiles),
+[**VS Code Remote - Containers**](https://code.visualstudio.com/docs/remote/containers#_personalizing-with-dotfile-repositories),
+or even Linux distributions that are not Arch or Ubuntu, through the [**minimum mode**](#configuration).
 
 ## Table of Contents
 
@@ -18,29 +27,44 @@ It's also suitable for use in [**GitHub Codespaces**](https://docs.github.com/co
   - [Introduction](#introduction)
   - [Features](#features)
   - [Installation](#installation)
+  - [Usage](#usage)
+  - [Configuration](#configuration)
   - [Software Included](#software-included)
+    - [Terminal Customization](#terminal-customization)
+    - [Development Tools](#development-tools)
+    - [Utilities](#utilities)
   - [Contributing](#contributing)
   - [License](#license)
 
 ## Introduction
 
-This repository aims to provide a seamless setup for my development environment, leveraging Arch Linux on WSL. The configurations include setups for terminal emulators, text editors, shell prompts, and various utilities that enhance productivity and development efficiency.
+This repository aims to provide a seamless setup for my development environment,
+leveraging Arch Linux on WSL. The configurations include setups for terminal emulators,
+text editors, shell prompts, and various utilities that
+enhance productivity and development efficiency.
 
 ## Features
 
-- **Cross-Platform Compatibility:** Configurations are designed to work on both WSL and native Linux environments.
-- **Easy Management with GNU Stow:** Simplify dotfile management with symlinked directories, making it easy to update, add, or remove configurations.
-- **Custom Shell Prompt:** Personalized shell prompt with Starship for a clean and informative command line experience.
-- **Enhanced Terminal Experience:** Includes customizations for Neovim, Neofetch, and more.
+- **Cross-Platform Compatibility:** Configurations are designed to work on both
+  WSL and native Linux environments.
+- **Easy Management with GNU Stow:** Simplify dotfile management with
+  symlinked directories, making it easy to update, add, or remove configurations.
+- **Custom Shell Prompt:** Personalized shell prompt with Starship for a clean
+  and informative command line experience.
+- **Enhanced Terminal Experience:** Includes customizations for Neovim,
+  Neofetch, and more.
 - **Efficient Development Tools:** Pre-configured setups for Git, Bat, and more.
-- **Scripted Installations:** Automate the installation process for easy setup on new machines.
+- **Scripted Installations:** Automate the installation process for easy
+  setup on new machines.
 
 ## Installation
 
 > [!CAUTION]
-> Always review and understand the script's code before running any executable scripts to prevent any undesired modifications to your system. 
+> Always review and understand the script's code before running any executable
+> scripts to prevent any undesired modifications to your system.
 
-To get started with these dotfiles, you'll need to have Arch Linux set up on WSL and install GNU Stow. Follow these steps to set up the environment:
+To get started with these dotfiles, you'll need to have Arch Linux set up on WSL
+and install GNU Stow. Follow these steps to set up the environment:
 
 1. **Clone the Repository:**
 
@@ -52,53 +76,61 @@ To get started with these dotfiles, you'll need to have Arch Linux set up on WSL
    # Execute install.sh to install dependencies
    ./install.sh
 
+   ```
+
 2. **Install GNU Stow:**
 
-    Make sure GNU Stow is installed on your system. You can install it using your package manager:
+   Make sure GNU Stow is installed on your system.
+   You can install it using your package manager:
 
-    ``` bash
-    sudo pacman -S stow
-    ```
+   ```bash
+   sudo pacman -S stow
+   ```
 
 3. **Use Stow to Symlink Dotfiles:**
 
-    Use stow to create symlinks for the configurations you want to use. For example, to set up the Neovim configuration:
+   Use stow to create symlinks for the configurations you want to use.
+   For example, to set up the Neovim configuration:
 
-    ``` bash
-    stow neovim
-    ```
+   ```bash
+   stow neovim
+   ```
 
-    This command will symlink the files from the neovim directory to your home directory.
+   This command will symlink the files from the neovim directory to your home directory.
 
 4. **Repeat for Other Configurations:**
 
-    Use stow for other configurations you want to set up:
+   Use stow for other configurations you want to set up:
 
-    ``` bash
-    stow bash
-    stow git
-    stow starship
-    stow neofetch
+   ```bash
+   stow bash
+   stow git
+   stow starship
+   stow neofetch
 
-    # etc
-    ```
+   # etc
+   ```
 
 ## Usage
 
-Once the dotfiles are symlinked using GNU Stow, you can start using the customized environment. Open your terminal and enjoy the personalized settings.
+Once the dotfiles are symlinked using GNU Stow,
+you can start using the customized environment.
+Open your terminal and enjoy the personalized settings.
 
-- *Neovim*: Launch Neovim with custom plugins and settings by typing nvim.
-- *Git*: Use Git with your pre-configured .gitconfig.
-- *Starship* Prompt: Enjoy the customized shell prompt with additional information.
-- *Neofetch*: Display system information with custom settings using neofetch.
+- _Neovim_: Launch Neovim with custom plugins and settings by typing nvim.
+- _Git_: Use Git with your pre-configured .gitconfig.
+- _Starship_ Prompt: Enjoy the customized shell prompt with additional information.
+- _Neofetch_: Display system information with custom settings using neofetch.
 
 ## Configuration
 
-The repository is organized into directories for each application or tool. Each directory contains the configuration files specific to that tool. Feel free to explore and modify the configurations to suit your preferences.
+The repository is organized into directories for each application or tool.
+Each directory contains the configuration files specific to that tool.
+Feel free to explore and modify the configurations to suit your preferences.
 
 Stow Convention Structure:
 
-``` shell
+```shell
 dotfiles/
 ├── bash/
 │   ├── .bashrc
@@ -129,35 +161,43 @@ Here is a list of software configurations included in this repository:
 
 ### Terminal Customization
 
-| No | Software | Description                           | Command        |
-|----|----------|---------------------------------------|----------------|
-| 1  | Bash     | Customized Bash shell settings        | `stow bash`    |
-| 2  | Starship | Cross-shell prompt with Starship      | `stow starship`|
-| 3  | Neofetch | Display system information in terminal| `stow neofetch`|
+| No  | Software | Description                            | Command         |
+| --- | -------- | -------------------------------------- | --------------- |
+| 1   | Bash     | Customized Bash shell settings         | `stow bash`     |
+| 2   | zsh      | Customized Z shell without oh-my-zsh   | `stow zsh`      |
+| 3   | Fish     | Friendly Interactive Shell             | `stow fish`     |
+| 2   | Kitty    | Powerful Terminal Emulator             | `stow starship` |
+| 4   | Starship | Cross-shell prompt with Starship       | `stow starship` |
+| 5   | Neofetch | Display system information in terminal | `stow neofetch` |
 
 ### Development Tools
 
-| No | Software | Description                      | Command       |
-|----|----------|----------------------------------|---------------|
-| 1  | Neovim   | Modern Vim-based text editor     | `stow neovim` |
-| 2  | Git      | Version control system           | `stow git`    |
-| 3  | Bat      | Cat clone with syntax highlighting| `stow bat`   |
+| No  | Software | Description                        | Command       |
+| --- | -------- | ---------------------------------- | ------------- |
+| 1   | Neovim   | Modern Vim-based text editor       | `stow neovim` |
+| 2   | Git      | Version control system             | `stow git`    |
+| 3   | Bat      | Cat clone with syntax highlighting | `stow bat`    |
+| 3   | Tmux     | Manage multiple terminal sessions  | `stow tmux`   |
 
 ### Utilities
 
-| No | Software  | Description                           | Command       |
-|----|-----------|---------------------------------------|---------------|
-| 1  | Yazi      | A blazing fast terminal file manager  | `stow yazi`   |
-| 2  | GNU Stow  | Symlink farm manager for dotfiles     | Managed manually |
-
+| No  | Software | Description                          | Command          |
+| --- | -------- | ------------------------------------ | ---------------- |
+| 1   | Yazi     | A blazing fast terminal file manager | `stow yazi`      |
+| 3   | Btop     | Hardware performance monitoring      | `stow btop`       |
+| 2   | GNU Stow | Symlink farm manager for dotfiles    | Managed manually |
 
 ## Contributing
 
-Contributions are welcome! If you have any improvements or suggestions, feel free to submit a pull request or open an issue. Please ensure that your contributions align with the repository's goals of providing a cross-platform and efficient development environment.
+Contributions are welcome! If you have any improvements or suggestions,
+feel free to submit a pull request or open an issue.
+Please ensure that your contributions align with the repository's goals of providing
+a cross-platform and efficient development environment.
 
 ## License
 
-This project is licensed under the MIT License. Feel free to use, modify, and distribute these dotfiles as you see fit.
+This project is licensed under the MIT License. Feel free to use, modify,
+and distribute these dotfiles as you see fit.
 
-Thank you for checking out my Arch Linux WSL Dotfiles! If you have any questions or need assistance, feel free to reach out. Happy coding!
-
+Thank you for checking out my Arch Linux WSL Dotfiles!
+If you have any questions or need assistance, feel free to reach out. Happy coding!
