@@ -1,9 +1,10 @@
-#        .__    
-# _____  |  |   
+#        .__
+# _____  |  |     FRIENDLY INTERACTIVE SHELL SETUP
 # \__  \ |  |     Abdul Hakim (alarwasyi98)
 #  / __ \|  |__   https://github.com/alarwasyi98
-# (____  /____/ 
-#      \/       
+# (____  /____/
+#      \/
+#                 last modified: 2024-10-28
 
 ### EXPORTS ###
 set fish_greeting # Supresses fish's intro message
