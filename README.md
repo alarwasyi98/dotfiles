@@ -18,7 +18,7 @@ It's also suitable for use in
 [**GitHub Codespaces**](https://docs.github.com/codespaces/customizing-your-codespace/personalizing-codespaces-for-your-account#dotfiles),
 [**Gitpod**](https://www.gitpod.io/docs/config-dotfiles),
 [**VS Code Remote - Containers**](https://code.visualstudio.com/docs/remote/containers#_personalizing-with-dotfile-repositories),
-or even Linux distributions that are not Arch or Ubuntu, through the [**minimum mode**](#configuration).
+or even android terminal application like [Termux](https://github.com/termux/termux-app).
 
 ## Table of Contents
 
@@ -81,10 +81,17 @@ and install GNU Stow. Follow these steps to set up the environment:
 2. **Install GNU Stow:**
 
    Make sure GNU Stow is installed on your system.
-   You can install it using your package manager:
+   You can install it using your package managers based on your distro:
 
    ```bash
+   # arch-based
    sudo pacman -S stow
+
+   # debian-based
+   sudo apt install stow -y
+
+   # osx
+   brew install stow
    ```
 
 3. **Use Stow to Symlink Dotfiles:**
@@ -100,15 +107,14 @@ and install GNU Stow. Follow these steps to set up the environment:
 
 4. **Repeat for Other Configurations:**
 
-   Use stow for other configurations you want to set up:
+   Use stow for individual configurations you want to set up:
 
    ```bash
    stow bash
    stow git
    stow starship
    stow neofetch
-
-   # etc
+   # so on
    ```
 
 ## Usage
@@ -166,9 +172,9 @@ Here is a list of software configurations included in this repository:
 | 1   | Bash     | Customized Bash shell settings         | `stow bash`     |
 | 2   | zsh      | Customized Z shell without oh-my-zsh   | `stow zsh`      |
 | 3   | Fish     | Friendly Interactive Shell             | `stow fish`     |
-| 2   | Kitty    | Powerful Terminal Emulator             | `stow starship` |
-| 4   | Starship | Cross-shell prompt with Starship       | `stow starship` |
-| 5   | Neofetch | Display system information in terminal | `stow neofetch` |
+| 4   | Kitty    | Powerful Terminal Emulator             | `stow starship` |
+| 5   | Starship | Cross-shell prompt with Starship       | `stow starship` |
+| 6   | Neofetch | Display system information in terminal | `stow neofetch` |
 
 ### Development Tools
 
@@ -177,15 +183,16 @@ Here is a list of software configurations included in this repository:
 | 1   | Neovim   | Modern Vim-based text editor       | `stow neovim` |
 | 2   | Git      | Version control system             | `stow git`    |
 | 3   | Bat      | Cat clone with syntax highlighting | `stow bat`    |
-| 3   | Tmux     | Manage multiple terminal sessions  | `stow tmux`   |
+| 4   | Tmux     | Manage multiple terminal sessions  | `stow tmux`   |
+| 5   | Termux   | Android Terminal Emulator          | `stow termux` |
 
 ### Utilities
 
 | No  | Software | Description                          | Command          |
 | --- | -------- | ------------------------------------ | ---------------- |
 | 1   | Yazi     | A blazing fast terminal file manager | `stow yazi`      |
-| 3   | Btop     | Hardware performance monitoring      | `stow btop`       |
-| 2   | GNU Stow | Symlink farm manager for dotfiles    | Managed manually |
+| 2   | Btop     | Hardware performance monitoring      | `stow btop`      |
+| 3   | GNU Stow | Symlink farm manager for dotfiles    | Managed manually |
 
 ## Contributing
 
