@@ -1,15 +1,11 @@
-# Personal Assets
-^/assets
-^/scripts
-*.sh
-
-# Unused file
-**/bubble.*
-
-# Backup File
-*.bak
-*.txt
-
-# Generated OS File
-.DS_Store
-desktop.ini
+# Personal directories
+^/scripts(/|$)
+^/assets(/|$)
+# Ignored filetype
+\.txt$
+\.sh$
+\.bak$
+# Common regex
+^/README.*
+^/LICENSE.*
+^/COPYING
