@@ -9,6 +9,14 @@
 ### EXPORTS ###
 set fish_greeting # Supresses fish's intro message
 set TERM xterm-256color # Sets the terminal type
+set -Ux EDITOR nvim
+set -Ux VISUAL nvim
+set -Ux PATH $HOME/.local/bin /usr/local/bin $PATH
+set -Ux MANPAGER "nvim +Man!"
+set -Ux PAGER less
+set -Ux XDG_CONFIG_HOME $HOME/.config
+set -Ux XDG_DATA_HOME $HOME/.local/share
+set -Ux FZF_DEFAULT_OPTS "--height 40% --layout=reverse --border"
 
 ###  SOURCES ###
 # source ~/.config/fish/auto-Hypr.fish # WARNING! FAIL TO LAUNCH HYPR
@@ -32,7 +40,6 @@ if test -f ~/.cache/ags/user/generated/terminal/sequences.txt
 end
 
 ## END ##
-
 
 ### ALIASES ###
 alias cls='clear'
@@ -122,6 +129,15 @@ function whatsmyip
     echo "External IP: $external_ip"
 end
 
+# Auto ls after cd 
+function cd
+    if test (count $argv) -gt 0
+        builtin cd $argv && ls
+    else
+        builtin cd ~ && ls
+    end
+end
+
 ### SHOW COLORSCRIPT ON STARTUP ###
 colorscript --exec alpha
 
@@ -130,5 +146,3 @@ starship init fish | source
 
 ### SETUP ZOXIDE ###
 zoxide init fish | source
-
-### FUCTIONS ###
