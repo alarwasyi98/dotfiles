@@ -38,15 +38,6 @@ if test -f ~/.cache/ags/user/generated/terminal/sequences.txt
     cat ~/.cache/ags/user/generated/terminal/sequences.txt
 end
 
-# doing ls after every cd, z, zoxide commands
-function cd
-    if test (count $argv) -gt 0
-        builtin cd $argv && ls
-    else
-        builtin cd ~ && ls
-    end
-end
-
 ## END ##
 
 ### ALIASES ###
@@ -137,13 +128,18 @@ function whatsmyip
     echo "External IP: $external_ip"
 end
 
-# Auto ls after cd 
+# Override `cd` to auto-list with `la`
 function cd
     if test (count $argv) -gt 0
-        builtin cd $argv && ls
+        builtin cd $argv; and la
     else
-        builtin cd ~ && ls
+        builtin cd ~; and la
     end
+end
+
+# Override `z` from zoxide to auto-list with `la`
+function z
+    command z $argv; and la
 end
 
 ### SHOW COLORSCRIPT ON STARTUP ###
