@@ -4,16 +4,15 @@
 #  / __ \|  |__   https://github.com/alarwasyi98
 # (____  /____/
 #      \/
-#                 last modified: 2024-10-28
 
 ### EXPORTS ###
 set fish_greeting # Supresses fish's intro message
 set TERM xterm-256color # Sets the terminal type
 set -Ux EDITOR nvim
 set -Ux VISUAL nvim
-set -Ux PATH $HOME/.local/bin /usr/local/bin $PATH
-set -Ux MANPAGER "nvim +Man!"
 set -Ux PAGER less
+set -Ux MANPAGER "nvim +Man!"
+# set -Ux PATH $HOME/.local/bin /usr/local/bin $PATH
 set -Ux XDG_CONFIG_HOME $HOME/.config
 set -Ux XDG_DATA_HOME $HOME/.local/share
 set -Ux FZF_DEFAULT_OPTS "--height 40% --layout=reverse --border"
@@ -37,6 +36,15 @@ end
 
 if test -f ~/.cache/ags/user/generated/terminal/sequences.txt
     cat ~/.cache/ags/user/generated/terminal/sequences.txt
+end
+
+# doing ls after every cd, z, zoxide commands
+function cd
+    if test (count $argv) -gt 0
+        builtin cd $argv && ls
+    else
+        builtin cd ~ && ls
+    end
 end
 
 ## END ##
