@@ -440,7 +440,6 @@ install_bashrc_support() {
 }
 
 # IP address lookup
-alias whatismyip="whatsmyip"
 function whatsmyip() {
   # Internal IP Lookup.
   if [ -e /sbin/ip ]; then
@@ -455,7 +454,16 @@ function whatsmyip() {
   echo -n "External IP: "
   curl -s ifconfig.me
 }
+alias whatismyip="whatsmyip"
 
+# yazi shell wrapper and alias
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd <"$tmp"
+  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+  rm -f -- "$tmp"
+}
 # git advance
 gcom() {
   git add .

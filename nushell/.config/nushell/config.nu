@@ -16,3 +16,14 @@
 #
 # You can remove these comments if you want or leave
 # them for future reference.
+
+# yazi shell wrapper and aliasing 
+def --env y [...args] {
+	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+	yazi ...$args --cwd-file $tmp
+	let cwd = (open $tmp)
+	if $cwd != "" and $cwd != $env.PWD {
+		cd $cwd
+	}
+	rm -fp $tmp
+}

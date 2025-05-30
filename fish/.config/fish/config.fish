@@ -142,6 +142,16 @@ function z
     command z $argv; and la
 end
 
+# yazi shell wrapper and aliasing 
+function y
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if read -z cwd <"$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        builtin cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
+end
+
 ### SHOW COLORSCRIPT ON STARTUP ###
 colorscript --exec alpha
 
