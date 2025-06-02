@@ -1,11 +1,22 @@
+#        .__
+# _____  |  |     STARSHIP SHELL PROMPT SETUP
+# \__  \ |  |     Abdul Hakim (alarwasyi98)
+#  / __ \|  |__   https://github.com/alarwasyi98/
+# (____  /____/
+#      \/
+
+# Location:
 # ~/.config/starship.toml
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
 
 # Inserts a blank line between shell prompts
 add_newline = true
 
 # Change the default prompt format
 format = """\
-[╭╴](238)$os$username\
+[╭╴](238)$os$shell$username\
 $all[╰─](238)$character"""
 
 # Change the default prompt characters
@@ -14,7 +25,7 @@ error_symbol = "[](238)"
 success_symbol = "[](238)"
 
 [os]
-format = '[$symbol](bold white) '   
+format = '[$symbol](bold white) '
 disabled = false
 
 [os.symbols]
@@ -26,11 +37,20 @@ EndeavourOS = ' '
 
 # Shows the username
 [username]
-disabled = false # disable in powershell
-format = "[$user]($style) " 
-show_always = true 
-style_root = "black bold" 
-style_user = "white bold" 
+disabled = false            # disable in powershell
+format = "[$user]($style) "
+show_always = true
+style_root = "black bold"
+style_user = "green bold"
+
+[shell]
+format = ' with [$indicator]($style) | '
+bash_indicator = ' bash'
+zsh_indicator = ' zsh'
+fish_indicator = ' fish'
+pwsh_indicator = '󰨊 pwsh'
+style = 'purple bold'
+disabled = false
 
 [directory]
 format = "at [$path]($style)[$read_only]($read_only_style) "
