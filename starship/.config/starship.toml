@@ -34,6 +34,7 @@ Arch = '󰣇'
 Ubuntu = ''
 Macos = '󰀵'
 EndeavourOS = ' '
+Android = ''
 
 # Shows the username
 [username]
