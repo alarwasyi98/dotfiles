@@ -74,3 +74,6 @@ nvim/doc/tags
 
 # Ignore any file ending with _ignore
 *_ignore
+
+# Ignore fish_variable for session persistent
+fish/.config/fish/fish_variable
