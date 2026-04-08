@@ -12,3 +12,4 @@ SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fish
 SETUVAR _fisher_plugins:jorgebucaran/fisher
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_features:no\x2dkeyboard\x2dprotocols
+SETUVAR fish_user_paths:/home/alarwasyi98/\x2eopencode/bin
