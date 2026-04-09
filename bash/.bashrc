@@ -2,7 +2,7 @@
 # _____  |  |     BOURNE AGAIN SHELL SETUP
 # \__  \ |  |     Abdul Hakim (alarwasyi98)
 #  / __ \|  |__   https://github.com/alarwasyi98/dotfiles
-# (____  /____/   Version: 2.23.2
+# (____  /____/   Version: 2.23.3
 #      \/
 
 # If not running interactively, don't do anything
@@ -402,9 +402,9 @@ alias rebootsafe='sudo shutdown -r now'
 alias rebootforce='sudo shutdown -r -n now'
 
 ## Change default login shell
-alias tobash="sudo chsh $USER -s /bin/bash && echo 'Logout dan login kembali untuk menerapkan perubahan.'"
-alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Logout dan login kembali untuk menerapkan perubahan.'"
-alias tofish="sudo chsh $USER -s /bin/fish && echo 'Logout dan login kembali untuk menerapkan perubahan.'"
+alias tobash="sudo chsh $USER -s /bin/bash && echo 'Log out and log back in to take effect'"
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Log out and log back in to take effect'"
+alias tofish="sudo chsh $USER -s /bin/fish && echo 'Log out and log back in to take effect'"
 
 ## Termbin
 alias tb="nc termbin.com 9999"

@@ -407,9 +407,9 @@ alias rebootsafe='sudo shutdown -r now'
 alias rebootforce='sudo shutdown -r -n now'
 
 ## Change Default Login Shell
-alias tobash="sudo chsh $USER -s /bin/bash && echo 'Logout dan login kembali untuk menerapkan perubahan.'"
-alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Logout dan login kembali untuk menerapkan perubahan.'"
-alias tofish="sudo chsh $USER -s /bin/fish && echo 'Logout dan login kembali untuk menerapkan perubahan.'"
+alias tobash="sudo chsh $USER -s /bin/bash && echo 'Log out and log back in to take effect'"
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Log out and log back in to take effect'"
+alias tofish="sudo chsh $USER -s /bin/fish && echo 'Log out and log back in to take effect"
 
 ## Termbin
 alias tb="nc termbin.com 9999"
