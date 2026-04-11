@@ -54,30 +54,11 @@ shopt -s checkwinsize # Updates terminal size after each command
 
 # TOOL INITIALIZATION
 
-## NVM — lazy load so it doesn't slow down
-## Load is deferred until node/npm/nvm is called for the first time
-export NVM_DIR="$HOME/.config/nvm"
-
-nvm() {
-  unset -f nvm node npm npx
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-  nvm "$@"
-}
-node() {
-  nvm
-  node "$@"
-}
-npm() {
-  nvm
-  npm "$@"
-}
-npx() {
-  nvm
-  npx "$@"
-}
+# Fast Node Manager
+eval "$(fnm env --use-on-cd --shell bash)"
 
 # Zoxide (smarter cd)
-eval "$(zoxide init bash)"
+eval "$(zoxide init bash --cmd cd)"
 
 # Starship — prompt decoration
 eval "$(starship init bash)"
@@ -277,6 +258,9 @@ alias ebrc='nvim ~/.bashrc'
 alias reloadbash="source ~/.bashrc && echo 'Bash reloaded successfully!'"
 alias showconf='bat ~/.bashrc'
 alias staredit='nvim $HOME/.config/starship.toml'
+
+# Bring back z command
+alias z='cd'
 
 ## eza as replacement for ls
 alias ls='eza -xAah --git --color=always --icons=always --no-user --no-permissions --no-filesize --no-time'

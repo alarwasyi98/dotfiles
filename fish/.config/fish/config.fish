@@ -35,25 +35,17 @@ fish_add_path $HOME/.opencode/bin
 
 # TOOL INITIALIZATION
 
-## Zoxide (smarter cd)
-zoxide init fish | source
-
 ## Starship — put it last of eval so it doesn't get overwritten
 starship init fish | source
 
-# FUNCTIONS
-## Override cd — auto-ls everytime cd
-function cd
-    if test (count $argv) -gt 0
-        builtin cd $argv; and ls
-    else
-        builtin cd ~; and ls
-    end
-end
+## Zoxide (smarter cd)
+zoxide init fish --cmd cd | source
 
-## Override z (zoxide) — auto ls in every jump
-function z
-    command z $argv; and ls
+# FUNCTIONS
+
+## Auto ls in every cd 
+function __auto_ls --on-variable PWD
+    ls
 end
 
 ## Go up N directory level: `up 3`
@@ -180,6 +172,9 @@ alias efish='nvim ~/.config/fish/config.fish'
 alias reload='source ~/.config/fish/config.fish'
 alias showconf='bat ~/.config/fish/config.fish'
 alias staredit='nvim $HOME/.config/starship.toml'
+
+## Bring back z command
+alias z='cd'
 
 ## eza as replacement for ls
 alias ls='eza -al --color=always --icons=always --git --group-directories-first'

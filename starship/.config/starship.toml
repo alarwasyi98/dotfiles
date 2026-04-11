@@ -47,7 +47,7 @@ style_user = "green bold"
 [shell]
 format = ' with [$indicator]($style) | '
 bash_indicator = ' bash'
-zsh_indicator = ' zsh'
+zsh_indicator = '󰫫 zsh'
 fish_indicator = ' fish'
 pwsh_indicator = '󰨊 pwsh'
 style = 'purple bold'
@@ -86,28 +86,23 @@ style = "bold green"
 untracked = " :$count"
 up_to_date = " "
 
-[terraform]
-format = "via [󱁢 terraform $version]($style) 壟 [$workspace]($style) "
-
-[vagrant]
-format = "via [ vagrant $version]($style) "
-
 [docker_context]
 format = "via [ $context](bold blue) "
-
-[helm]
-format = "via [  $version](bold purple) "
 
 [python]
 python_binary = "python3"
 symbol = "via [ $version]"
 
 [nodejs]
-disabled = true
+disabled = false
 format = "with [ $version](bold green) "
 
-[ruby]
-format = "with [ $version]($style) "
+[bun]
+disabled = false
+format = "via [ $version]($style)"
+
+[package]
+format = "is [ $version]($style) "
 
 [php]
 format = "with [󰌟  $version](bold purple)"

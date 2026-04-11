@@ -74,21 +74,11 @@ bindkey '^[[B' history-substring-search-down
 
 # TOOLS INITIALIZATION
 
-## NVM — lazy load so it doesn't slow down
-## Load is deferred until node/npm/nvm is called for the first time
-export NVM_DIR="$HOME/.config/nvm"
-
-nvm() {
-  unfunction nvm node npm npx 2>/dev/null
-  [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
-  nvm "$@"
-}
-node() { nvm; node "$@" }
-npm()  { nvm; npm  "$@" }
-npx()  { nvm; npx  "$@" }
+# Fast Node Manager
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 ## Zoxide (smarter cd)
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
 
 ## Starship — prompt decoration
 eval "$(starship init zsh)"
@@ -282,6 +272,9 @@ alias ezsh='nvim ~/.zshrc'
 alias reloadzsh="source ~/.zshrc && echo 'Zsh reloaded successfully!'"
 alias showconf='bat ~/.zshrc'
 alias staredit='nvim $HOME/.config/starship.toml'
+
+## Bring back z command
+alias z='cd'
 
 ## eza as replacement for ls
 alias ls='eza -xAah --git --color=always --icons=always --no-user --no-permissions --no-filesize --no-time'
