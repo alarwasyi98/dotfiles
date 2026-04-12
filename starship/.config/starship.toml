@@ -95,7 +95,7 @@ symbol = "via [ $version]"
 
 [nodejs]
 disabled = false
-format = "with [ $version](bold green) "
+format = "with [󰋘 $version](bold green) "
 
 [bun]
 disabled = false

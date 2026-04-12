@@ -35,6 +35,9 @@ fish_add_path $HOME/.opencode/bin
 
 # TOOL INITIALIZATION
 
+## Fast Node Manager
+fnm env --use-on-cd --shell fish | source
+
 ## Starship — put it last of eval so it doesn't get overwritten
 starship init fish | source
 
