@@ -33,6 +33,10 @@ fish_add_path $HOME/.bin
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.opencode/bin
 
+## Bun 
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
+
 # TOOL INITIALIZATION
 
 ## Fast Node Manager
